@@ -5,11 +5,14 @@ const question = document.getElementById("question");
 const qImg = document.getElementById("qImg");
 const choiceA = document.getElementById("A");
 const choiceB = document.getElementById("B");
-const choiceC = document.getElementById("C");
+const circle = document.getElementById("circle");
+// const choiceC = document.getElementById("C");
 const counter = document.getElementById("counter");
 const timeGauge = document.getElementById("timeGauge");
 // const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
+var number = 100;
+const MAX = (Math.floor(Math.random() * 4.3) + 2) * 100;
 
 // create our questions
 let questions = [
@@ -18,14 +21,13 @@ let questions = [
         imgSrc : "img/graph.png",
         choiceA : "Correct",
         choiceB : "Wrong",
-        choiceC : "Wrong",
         correct : "A"
     },{
         question : "A. What does HTML stand for? <p>B. second choice</p> <p>C. third choice</p>",
         imgSrc : "img/graph.png",
         choiceA : "Wrong",
         choiceB : "Correct",
-        choiceC : "Wrong",
+        // choiceC : "Wrong",
         correct : "B"
     },{
         question : "A. What does HTML stand for? <p>B. second choice</p> <p>C. third choice</p>",
@@ -39,7 +41,7 @@ let questions = [
 
 // create some variables
 
-const lastQuestion = questions.length - 1;
+// const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
 let count = 0;
 const questionTime = 10; // 10s
@@ -48,23 +50,25 @@ const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
 let score = 0;
 
-// render a question
-function renderQuestion(){
-    let q = questions[runningQuestion];
+// // render a question
+// function renderQuestion(){
+//     let q = questions[runningQuestion];
     
-    question.innerHTML = "<p>"+ q.question +"</p>";
-    // qImg.innerHTML = "<img src="+ q.imgSrc +">";
-    choiceA.innerHTML = q.choiceA;
-    choiceB.innerHTML = q.choiceB;
-    choiceC.innerHTML = q.choiceC;
-}
+//     question.innerHTML = "<p>"+ q.question +"</p>";
+//     // qImg.innerHTML = "<img src="+ q.imgSrc +">";
+//     choiceA.innerHTML = q.choiceA;
+//     choiceB.innerHTML = q.choiceB;
+//     // choiceC.innerHTML = q.choiceC;
+// }
 
 start.addEventListener("click",startQuiz);
 
 // start quiz
 function startQuiz(){
     start.style.display = "none";
-    renderQuestion();
+    // renderQuestion();
+        choiceA.innerHTML = "MAKE BIGGER";
+    choiceB.innerHTML = "STOP";
     quiz.style.display = "block";
     // renderProgress();
     renderCounter();
@@ -84,54 +88,66 @@ function renderCounter(){
     if(count <= questionTime){
     	if(count < 0) {
     		finalCount = count * -1;
-    		counter.innerHTML = "-$" + finalCount;
+    		counter.innerHTML = finalCount;
     	}
      else {
-     	        counter.innerHTML = "$" + count;
+     	        counter.innerHTML = count;
      }
         timeGauge.style.width = count * gaugeUnit + "px";
   
-    }else{
-        // change progress color to red
-        // answerIsWrong();
-        count--;
-        if(runningQuestion < lastQuestion){
-            runningQuestion++;
-            renderQuestion();
-        }else{
-            // end the quiz and show the score
-            clearInterval(TIMER);
-            scoreRender();
-        }
-    }
+    }//else{
+    //     // change progress color to red
+    //     // answerIsWrong();
+    //     count--;
+        // if(runningQuestion < lastQuestion){
+        //     runningQuestion++;
+        //     // renderQuestion();
+        // }else{
+        //     // end the quiz and show the score
+        //     clearInterval(TIMER);
+        //     scoreRender();
+        // }
+    // }
 }
 
 // checkAnwer
 
 function checkAnswer(answer){
-    if( answer == questions[runningQuestion].correct){
-        // answer is correct
+    if(answer == "A"){
+        // answer is correct=
+        number += Math.floor(Math.random() * 100) + 1;
+        if(number < MAX) {
+        circle.height = number;
+        circle.width = number;
+    } else{
+        // end the quiz and show the score
+        clearInterval(TIMER);
+        scoreRender();
+    }
         score++;
         count++;
         // change progress color to green
         // answerIsCorrect();
         renderCounter();
-    }else{
-        // answer is wrong
-        // change progress color to red
-        // answerIsWrong();
-        count--;
-        renderCounter();
-    }
- 
-    if(runningQuestion < lastQuestion){
-        runningQuestion++;
-        renderQuestion();
-    }else{
-        // end the quiz and show the score
-        clearInterval(TIMER);
+      } else if (answer == "B") {
+                clearInterval(TIMER);
         scoreRender();
-    }
+      }//else{
+    //     // answer is wrong
+    //     // change progress color to red
+    //     // answerIsWrong();
+    //     count--;
+    //     renderCounter();
+    // }
+ 
+    // if(runningQuestion < lastQuestion){
+    //     runningQuestion++;
+    //     renderQuestion();
+    // }else{
+    //     // end the quiz and show the score
+    //     clearInterval(TIMER);
+    //     scoreRender();
+    // }
 }
 
 // // answer is correct
@@ -149,16 +165,16 @@ function scoreRender(){
     scoreDiv.style.display = "block";
     
     // calculate the amount of question percent answered by the user
-    const scorePerCent = Math.round(100 * score/questions.length);
+    const scorePerCent = Math.round(100 * score/5);
     
     // choose the image based on the scorePerCent
-    let img = (scorePerCent >= 80) ? "img/5.png" :
-              (scorePerCent >= 60) ? "img/4.png" :
-              (scorePerCent >= 40) ? "img/3.png" :
-              (scorePerCent >= 20) ? "img/2.png" :
-              "img/1.png";
+    // let img = (scorePerCent >= 80) ? "img/5.png" :
+    //           (scorePerCent >= 60) ? "img/4.png" :
+    //           (scorePerCent >= 40) ? "img/3.png" :
+    //           (scorePerCent >= 20) ? "img/2.png" :
+    //           "img/1.png";
     
-    scoreDiv.innerHTML = "<img src="+ img +">";
+    // scoreDiv.innerHTML = "<img src="+ img +">";
     scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
 }
 
