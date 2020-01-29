@@ -7,7 +7,8 @@ const choiceA = document.getElementById("A");
 const choiceB = document.getElementById("B");
 const circle = document.getElementById("circle");
 // const choiceC = document.getElementById("C");
-const counter = document.getElementById("counter");
+const counterOne = document.getElementById("counter");
+const counterTwo = document.getElementById("countertwo");
 const timeGauge = document.getElementById("timeGauge");
 // const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
@@ -42,13 +43,18 @@ let questions = [
 // create some variables
 
 // const lastQuestion = questions.length - 1;
+let roundOne = window.sessionStorage;
+let clicksCount = 0;
+let roundOneKey = "Session 1";
 let runningQuestion = 0;
 let count = 0;
 const questionTime = 10; // 10s
 const gaugeWidth = 150; // 150px
 const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
-let score = 0;
+let permanentBank = 0;
+let tempBank = 0;
+let jsonResult = [];
 
 // // render a question
 // function renderQuestion(){
@@ -85,17 +91,19 @@ function startQuiz(){
 // counter render
 
 function renderCounter(){
-    if(count <= questionTime){
-    	if(count < 0) {
-    		finalCount = count * -1;
-    		counter.innerHTML = finalCount;
-    	}
-     else {
-     	        counter.innerHTML = count;
-     }
+
+    	// if(count < 0) {
+    	// 	finalCount = count * -1;
+     //        counter.innerHTML = 'Temp Bank: ' + tempBank;
+     //        counterTwo.innerHTML = 'Permanent Bank: ' + permanentBank;
+    	// }
+     // else {
+            counter.innerHTML = 'Temp Bank: ' + tempBank;
+            counterTwo.innerHTML = 'Permanent Bank: ' + permanentBank;
+     // }
         timeGauge.style.width = count * gaugeUnit + "px";
   
-    }//else{
+    //else{
     //     // change progress color to red
     //     // answerIsWrong();
     //     count--;
@@ -115,22 +123,57 @@ function renderCounter(){
 function checkAnswer(answer){
     if(answer == "A"){
         // answer is correct=
-        number += Math.floor(Math.random() * 100) + 1;
+        clicksCount++;
+        number += Math.floor(Math.random() * 20) + 1;
+        growCirc = Math.floor(Math.random() * 10) + 0.2;
         if(number < MAX) {
-        circle.height = number;
-        circle.width = number;
+        circle.height += growCirc;
+        circle.width += growCirc;
     } else{
         // end the quiz and show the score
-        clearInterval(TIMER);
+        // clearInterval(TIMER);
+        jsonResult = [permanentBank, clicksCount];
+        if(roundOne.getItem('Session 1') == null) {
+            roundOne.setItem('Session 1', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+            scoreRender();
+        }
+        else if(roundOne.getItem('Session 2') == null) {
+            roundOne.setItem('Session 2', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+            scoreRender();
+        }
+        else if(roundOne.getItem('Session 3') == null) {
+            roundOne.setItem('Session 3', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+            scoreRender();
+        }
+        else if(roundOne.getItem('Session 4') == null) {
+            roundOne.setItem('Session 4', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+            scoreRender();
+        }
         scoreRender();
     }
-        score++;
+        tempBank++;
         count++;
         // change progress color to green
         // answerIsCorrect();
         renderCounter();
       } else if (answer == "B") {
-                clearInterval(TIMER);
+        permanentBank = tempBank;
+        if(roundOne.getItem('Session 1') == null) {
+            roundOne.setItem('Session 1', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+            scoreRender();
+        }
+        else if(roundOne.getItem('Session 2') == null) {
+            roundOne.setItem('Session 2', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+            scoreRender();
+        }
+        else if(roundOne.getItem('Session 3') == null) {
+            roundOne.setItem('Session 3', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+            scoreRender();
+        }
+        else if(roundOne.getItem('Session 4') == null) {
+            roundOne.setItem('Session 4', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+            scoreRender();
+        }
         scoreRender();
       }//else{
     //     // answer is wrong

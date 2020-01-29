@@ -96,7 +96,11 @@ body{
     text-align: center;
 }
 #counter{
-    font-size: 3em;
+    font-size: 1em;
+}
+
+#countertwo{
+    font-size: 1em;
 }
 /*#btimeGauge{
     width : 150px;
