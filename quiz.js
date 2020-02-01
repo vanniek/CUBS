@@ -98,6 +98,9 @@ function renderCounter(){
      //        counterTwo.innerHTML = 'Permanent Bank: ' + permanentBank;
     	// }
      // else {
+        if(roundOne.getItem("carryOverScore") != null) {
+            permanentBank += parseInt(roundOne.getItem("carryOverScore"));
+        }
             counter.innerHTML = 'Temp Bank: ' + tempBank;
             counterTwo.innerHTML = 'Permanent Bank: ' + permanentBank;
      // }
@@ -132,7 +135,6 @@ function checkAnswer(answer){
     } else{
         // end the quiz and show the score
         // clearInterval(TIMER);
-        jsonResult = [permanentBank, clicksCount];
         if(roundOne.getItem('Session 1') == null) {
             roundOne.setItem('Session 1', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
             scoreRender();
@@ -149,15 +151,17 @@ function checkAnswer(answer){
             roundOne.setItem('Session 4', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
             scoreRender();
         }
+
         scoreRender();
     }
         tempBank++;
+        counter.innerHTML = 'Temp Bank: ' + tempBank;
         count++;
         // change progress color to green
         // answerIsCorrect();
-        renderCounter();
       } else if (answer == "B") {
-        permanentBank = tempBank;
+        permanentBank += tempBank;
+        roundOne.setItem("carryOverScore", permanentBank);
         if(roundOne.getItem('Session 1') == null) {
             roundOne.setItem('Session 1', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
             scoreRender();
