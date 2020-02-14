@@ -14,7 +14,8 @@ const scoreDiv = document.getElementById("scoreContainer");
 const responseDiv = document.getElementById("responseContainer");
 const instructionPage = document.getElementById("instructionPage");
 var number = 100;
-const MAX = (Math.floor(Math.random() * 4.3) + 2) * 100;
+var MAX = 400;
+// const MAX = (Math.floor(Math.random() * 4.3) + 2) * 100;
 const RAND = 1;
 // create our questions
 let questions = [
@@ -128,12 +129,15 @@ function renderCounter(){
 // checkAnwer
 
 function checkAnswer(answer){
+        if(roundOne.getItem('MAX') == null) {
+        roundOne.setItem('MAX', MAX);
+    }
     if(answer == "A"){
         // answer is correct=
         clicksCount++;
         number += Math.floor(Math.random() * 20) + 1;
         growCirc = Math.floor(Math.random() * 10) + 0.2;
-        if(number < MAX) {
+        if(number < roundOne.getItem('MAX')) {
         circle.height += growCirc;
         circle.width += growCirc;
     } else{
@@ -141,18 +145,26 @@ function checkAnswer(answer){
         // clearInterval(TIMER);
         if(roundOne.getItem('Session 1') == null) {
             roundOne.setItem('Session 1', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+            MAX = 445;
+            roundOne.setItem('MAX', MAX);
             scoreRender();
         }
         else if(roundOne.getItem('Session 2') == null) {
             roundOne.setItem('Session 2', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+            MAX = 535;
+            roundOne.setItem('MAX', MAX);
            checkIn();
         }
         else if(roundOne.getItem('Session 3') == null) {
             roundOne.setItem('Session 3', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+            MAX = 515;
+            roundOne.setItem('MAX', MAX);
             scoreRender();
         }
         else if(roundOne.getItem('Session 4') == null) {
             roundOne.setItem('Session 4', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+            MAX = 435;
+            roundOne.setItem('MAX', MAX);
             scoreRender();
         }
 
@@ -168,18 +180,26 @@ function checkAnswer(answer){
         roundOne.setItem("carryOverScore", permanentBank);
         if(roundOne.getItem('Session 1') == null) {
             roundOne.setItem('Session 1', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-            checkIn();
+            MAX = 445;
+            roundOne.setItem('MAX', MAX);
+            scoreRender();
         }
         else if(roundOne.getItem('Session 2') == null) {
             roundOne.setItem('Session 2', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-            scoreRender();
+            MAX = 535;
+            roundOne.setItem('MAX', MAX);
+           checkIn();
         }
         else if(roundOne.getItem('Session 3') == null) {
             roundOne.setItem('Session 3', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+            MAX = 515;
+            roundOne.setItem('MAX', MAX);
             scoreRender();
         }
         else if(roundOne.getItem('Session 4') == null) {
             roundOne.setItem('Session 4', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+            MAX = 435;
+            roundOne.setItem('MAX', MAX);
             scoreRender();
         }
         // scoreRender();
