@@ -1,5 +1,5 @@
 body{
-    font-size: 20px;
+    font-size: 15px;
     font-family: monospace;
 }
 
@@ -12,7 +12,7 @@ body{
     box-shadow: 0px 5px 15px 0px;
     position: relative;
 }
-#start{
+#startbtn{
     font-size: 1.5em;
     font-weight: bolder;
     word-break: break-all;
@@ -23,10 +23,23 @@ body{
     cursor: pointer;
     position: absolute;
     left:290px;
-    top:260px;
+    top:520px;
     color : lightgrey;
 }
-#start:hover{
+
+p {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+ul {
+    margin-right: 20px;
+}
+
+h2 {
+    margin-left: 20px;
+}
+#startbtn:hover{
     border: 3px solid lightseagreen;
     color : lightseagreen;
 }
@@ -134,6 +147,17 @@ body{
     margin-right : 5px;
 }
 #scoreContainer{
+    margin : -20px auto;
+    background-color: white;
+    height: 600px;
+    width : 700px;
+    border-radius: 5px;
+    box-shadow: 0px 5px 15px 0px;
+    position: absolute;
+    display: none;
+}
+
+#responseContainer{
     margin : -20px auto;
     background-color: white;
     height: 600px;

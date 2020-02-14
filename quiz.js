@@ -5,16 +5,17 @@ const question = document.getElementById("question");
 const qImg = document.getElementById("qImg");
 const choiceA = document.getElementById("A");
 const choiceB = document.getElementById("B");
+const nextRound = document.getElementById("c");
 const circle = document.getElementById("circle");
-// const choiceC = document.getElementById("C");
 const counterOne = document.getElementById("counter");
 const counterTwo = document.getElementById("countertwo");
 const timeGauge = document.getElementById("timeGauge");
-// const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
+const responseDiv = document.getElementById("responseContainer");
+const instructionPage = document.getElementById("instructionPage");
 var number = 100;
 const MAX = (Math.floor(Math.random() * 4.3) + 2) * 100;
-
+const RAND = 1;
 // create our questions
 let questions = [
     {
@@ -28,7 +29,6 @@ let questions = [
         imgSrc : "img/graph.png",
         choiceA : "Wrong",
         choiceB : "Correct",
-        // choiceC : "Wrong",
         correct : "B"
     },{
         question : "A. What does HTML stand for? <p>B. second choice</p> <p>C. third choice</p>",
@@ -71,7 +71,11 @@ start.addEventListener("click",startQuiz);
 
 // start quiz
 function startQuiz(){
-    start.style.display = "none";
+
+        start.style.display = "none";
+            instructionPage.style.display = "none";
+
+
     // renderQuestion();
         choiceA.innerHTML = "MAKE BIGGER";
     choiceB.innerHTML = "STOP";
@@ -104,7 +108,7 @@ function renderCounter(){
             counter.innerHTML = 'Temp Bank: ' + tempBank;
             counterTwo.innerHTML = 'Permanent Bank: ' + permanentBank;
      // }
-        timeGauge.style.width = count * gaugeUnit + "px";
+        // timeGauge.style.width = count * gaugeUnit + "px";
   
     //else{
     //     // change progress color to red
@@ -141,7 +145,7 @@ function checkAnswer(answer){
         }
         else if(roundOne.getItem('Session 2') == null) {
             roundOne.setItem('Session 2', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-            scoreRender();
+           checkIn();
         }
         else if(roundOne.getItem('Session 3') == null) {
             roundOne.setItem('Session 3', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
@@ -152,7 +156,7 @@ function checkAnswer(answer){
             scoreRender();
         }
 
-        scoreRender();
+        // scoreRender();
     }
         tempBank++;
         counter.innerHTML = 'Temp Bank: ' + tempBank;
@@ -164,7 +168,7 @@ function checkAnswer(answer){
         roundOne.setItem("carryOverScore", permanentBank);
         if(roundOne.getItem('Session 1') == null) {
             roundOne.setItem('Session 1', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-            scoreRender();
+            checkIn();
         }
         else if(roundOne.getItem('Session 2') == null) {
             roundOne.setItem('Session 2', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
@@ -178,7 +182,7 @@ function checkAnswer(answer){
             roundOne.setItem('Session 4', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
             scoreRender();
         }
-        scoreRender();
+        // scoreRender();
       }//else{
     //     // answer is wrong
     //     // change progress color to red
@@ -212,6 +216,9 @@ function scoreRender(){
     scoreDiv.style.display = "block";
 }
 
+function checkIn() {
+    responseDiv.style.display = "block";
+}
 
 
 

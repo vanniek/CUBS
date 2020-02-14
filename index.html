@@ -7,35 +7,53 @@
 </head>
 <body>
     <div id="container">
-        <div id="start">Start!</div>
+        <div id="start">
+            <div id = "instructionPage" style="display: block;">
+            <h1><center>“The Balloon Game”</center></h1>
+            <p>For the purpose of minimizing external distractions throughout the task, you will be required to keep your earphones on at all times</p>
+            <h2>The Task:</h2>
+            <p>You will be presented with a balloon and offered the chance to earn money by following the instructions below:</p>
+            <ul>
+  <li>Each click will cause the balloon to incrementally inflate and points to be added to the scoreboard at the bottom right of the screen</li>
+  <li>Each balloon has been randomly assigned an anonymous threshold value. This value will change in each round.</li>
+  <li>Points will be added to the scoreboard up until the balloon reaches its threshold value, at which point the balloon is over inflated and explodes</li>
+  <li>If the balloon explodes, the total on your scoreboard will be reset to zero and you will receive no points </li>
+    <li>The money you receive at the end of each round will be calculated as a fraction of the total points you earn.</li>
+        <li>Therefore, if your balloon explodes, the total money you earn for that round will be $0</li>
+                <li>Likewise, if you choose to cash-out prior to the balloon exploding, your total monetary payoff will be greater than $0</li>
+                        <li>If you have any questions at this moment, please raise your hands and someone will come and assist you. </li>
+</ul>
+</div>
+</p>
+        <div id="startbtn">Start!</div>
+
+        </div>
         <div id="quiz" style="display: none">
               <div class="container">
-               <img id="circle" src="img/balloon.png" width="120" height="130">
+               <img id="circle" src="img/balloon.png" width="120" height="130"></img>
   </div>
-</img>
-
             <div id="question">
             </div>
             <div id="qImg">
                 <div id="timer">
                 <div id="counter"></div>
-                                <div id="countertwo"></div>
-<!--                 <div id="btimeGauge"></div>
-                <div id="timeGauge"></div> -->
+                <div id="countertwo"></div>
                 </div>
             </div>
 
             <div id="choices">
                 <div class="choice" id="A" onclick="checkAnswer('A')"></div>
                 <div class="choice" id="B" onclick="checkAnswer('B')"></div>
-<!--                 <div class="choice" id="C" onclick="checkAnswer('C')"></div> -->
             </div>
-<!--             <div id="progress"></div> -->
+        </div>
+        <div id="responseContainer" style="display: none">
+            <div id="repeat">
+                <div class="choice" id="c" onclick="window.location.reload();">NEXT</div>
+            </div>          
         </div>
         <div id="scoreContainer" style="display: none">
             <div id="repeat">
                 <div class="choice" id="c" onclick="window.location.reload();">NEXT ROUND</div>
-<!--                 <div class="choice" id="C" onclick="checkAnswer('C')"></div> -->
             </div>          
         </div>
     </div>
