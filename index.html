@@ -48,7 +48,53 @@
         </div>
         <div id="responseContainer" style="display: none">
             <div id="repeat">
-                <div class="choice" id="c" onclick="window.location.reload();">NEXT</div>
+                How tired do you feel on a scale from 1 to 5?
+                <div class="choice" id="c" onclick="addCheckIn('1')">1</div>
+                <div class="choice" id="c" onclick="addCheckIn('2')">2</div>
+                <div class="choice" id="c" onclick="addCheckIn('3')">3</div>
+                <div class="choice" id="c" onclick="addCheckIn('4')">4</div>
+                <div class="choice" id="c" onclick="addCheckIn('5')">5</div>
+            </div>          
+        </div>
+        <div id="responseContainerTwo" style="display: none">
+            <div id="repeat">
+                How relaxed do you feel on a scale from 1 to 5?
+                <div class="choice" id="c" onclick="addCheckInTwo('1')">1</div>
+                <div class="choice" id="c" onclick="addCheckInTwo('2')">2</div>
+                <div class="choice" id="c" onclick="addCheckInTwo('3')">3</div>
+                <div class="choice" id="c" onclick="addCheckInTwo('4')">4</div>
+                <div class="choice" id="c" onclick="addCheckInTwo('5')">5</div>
+            </div>          
+        </div>
+        <div id="responseContainerThree" style="display: none">
+            <div id="repeat">
+                What is your ethnicity?
+                <div class="choicev" id="c" onclick="addCheckInThree('White')">White</div>
+                <div class="choicev" id="c" onclick="addCheckInThree('Hispanic/Latino')">Hispanic or Latino</div>
+                <div class="choicev" id="c" onclick="addCheckInThree('Black/African American')">Black or African American</div>
+                <div class="choicev" id="c" onclick="addCheckInThree('Native American/American Indian')">Native American or American Indian</div>
+                <div class="choicev" id="c" onclick="addCheckInThree('Asian/Pacific Islander')">Asian or Pacific Islander</div>
+                <div class="choicev" id="c" onclick="addCheckInThree('Other')">Other</div>
+            </div>          
+        </div>
+        <div id="responseContainerFour" style="display: none">
+            <div id="repeat">
+                What is your main field of study?<p>
+                <div class="choicev" id="c" onclick="addCheckInFour('Business and Management')">Business and Management</div>
+                <div class="choicev" id="c" onclick="addCheckInFour('Arts and Humanities')">Arts and Humanities</div>
+                <div class="choicev" id="c" onclick="addCheckInFour('Engineering and Technology ')">Engineering and Technology</div>
+                <div class="choicev" id="c" onclick="addCheckInFour('Social Sciences')">Social Sciences</div>
+                <div class="choicev" id="c" onclick="addCheckInFour('Life Sciences and Medicine')">Life Sciences and Medicine</div>
+                <div class="choicev" id="c" onclick="addCheckInFour('Natural Sciences')">Natural Sciences</div>
+                <div class="choicev" id="c" onclick="addCheckInFour('Other')">Other</div>
+            </div>          
+        </div>
+        <div id="responseContainerFive" style="display: none">
+            <div id="repeat">
+                What is your gender?
+                <div class="choice" id="c" onclick="addCheckInFive('Female')">Female</div>
+                <div class="choice" id="c" onclick="addCheckInFive('Male')">Male</div>
+                <div class="choice" id="c" onclick="addCheckInFive('Other')">Other</div>
             </div>          
         </div>
         <div id="scoreContainer" style="display: none">

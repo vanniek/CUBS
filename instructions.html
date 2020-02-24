@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="start">
+            <div id="startbtn">Start!</div>
+
+        </div>
+        <div id="quiz" style="display: none">
+              <div class="container">
+               <img id="circle" src="img/balloon.png" width="120" height="130">
+  </div>
+</img>
+
+            <div id="question">
+            </div>
+            <div id="qImg">
+                <div id="timer">
+                <div id="counter"></div>
+                                <div id="countertwo"></div>
+<!--                 <div id="btimeGauge"></div>
+                <div id="timeGauge"></div> -->
+                </div>
+            </div>
+
+            <div id="choices">
+                <div class="choice" id="A" onclick="checkAnswer('A')"></div>
+                <div class="choice" id="B" onclick="checkAnswer('B')"></div>
+<!--                 <div class="choice" id="C" onclick="checkAnswer('C')"></div> -->
+            </div>
+<!--             <div id="progress"></div> -->
+        </div>
+        <div id="scoreContainer" style="display: none">
+            <div id="repeat">
+                <div class="choice" id="c" onclick="window.location.reload();">NEXT ROUND</div>
+<!--                 <div class="choice" id="C" onclick="checkAnswer('C')"></div> -->
+            </div>          
+        </div>
+                <div id="instructionPage" style="display: none">
+<!--             <div id="repeat">
+                <div class="choice" id="c" onclick="window.location.reload();">NEXT ROUND</div>
+            </div>    -->       
+        </div>
+    </div>
+    <script src="quiz.js"></script>
+</body>
+</html>

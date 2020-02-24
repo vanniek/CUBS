@@ -12,6 +12,10 @@ const counterTwo = document.getElementById("countertwo");
 const timeGauge = document.getElementById("timeGauge");
 const scoreDiv = document.getElementById("scoreContainer");
 const responseDiv = document.getElementById("responseContainer");
+const responseDivTwo = document.getElementById("responseContainerTwo");
+const responseDivThree = document.getElementById("responseContainerThree");
+const responseDivFour = document.getElementById("responseContainerFour");
+const responseDivFive = document.getElementById("responseContainerFive");
 const instructionPage = document.getElementById("instructionPage");
 var number = 100;
 var MAX = 400;
@@ -147,25 +151,32 @@ function checkAnswer(answer){
             roundOne.setItem('Session 1', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
             MAX = 445;
             roundOne.setItem('MAX', MAX);
-            scoreRender();
+            checkIn();
         }
         else if(roundOne.getItem('Session 2') == null) {
             roundOne.setItem('Session 2', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
             MAX = 535;
             roundOne.setItem('MAX', MAX);
-           checkIn();
+           checkInTwo();
         }
         else if(roundOne.getItem('Session 3') == null) {
             roundOne.setItem('Session 3', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
             MAX = 515;
             roundOne.setItem('MAX', MAX);
-            scoreRender();
+            checkInThree();
+            
         }
         else if(roundOne.getItem('Session 4') == null) {
             roundOne.setItem('Session 4', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
             MAX = 435;
             roundOne.setItem('MAX', MAX);
-            scoreRender();
+            checkInFour();
+        }
+        else if(roundOne.getItem('Session 5') == null) {
+            roundOne.setItem('Session 5', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+            MAX = 435;
+            roundOne.setItem('MAX', MAX);
+            checkInFive();
         }
 
         // scoreRender();
@@ -182,25 +193,32 @@ function checkAnswer(answer){
             roundOne.setItem('Session 1', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
             MAX = 445;
             roundOne.setItem('MAX', MAX);
-            scoreRender();
+            checkIn();
         }
         else if(roundOne.getItem('Session 2') == null) {
             roundOne.setItem('Session 2', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
             MAX = 535;
             roundOne.setItem('MAX', MAX);
-           checkIn();
+           checkInTwo();
         }
         else if(roundOne.getItem('Session 3') == null) {
             roundOne.setItem('Session 3', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
             MAX = 515;
             roundOne.setItem('MAX', MAX);
-            scoreRender();
+            checkInThree();
         }
         else if(roundOne.getItem('Session 4') == null) {
             roundOne.setItem('Session 4', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
             MAX = 435;
             roundOne.setItem('MAX', MAX);
-            scoreRender();
+            checkInFour();
+        }
+
+        else if(roundOne.getItem('Session 5') == null) {
+            roundOne.setItem('Session 5', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+            MAX = 435;
+            roundOne.setItem('MAX', MAX);
+            checkInFive();
         }
         // scoreRender();
       }//else{
@@ -238,6 +256,47 @@ function scoreRender(){
 
 function checkIn() {
     responseDiv.style.display = "block";
+}
+
+function checkInTwo() {
+    responseDivTwo.style.display = "block";
+}
+
+function checkInThree() {
+    responseDivThree.style.display = "block";
+}
+
+function checkInFour() {
+    responseDivFour.style.display = "block";
+}
+
+function checkInFive() {
+    responseDivFive.style.display = "block";
+}
+
+function addCheckIn(answer) {
+    roundOne.setItem('question 1', answer);
+    window.location.reload();
+}
+
+function addCheckInTwo(answer) {
+    roundOne.setItem('question 2', answer);
+    window.location.reload();
+}
+
+function addCheckInThree(answer) {
+    roundOne.setItem('question 3', answer);
+    window.location.reload();
+}
+
+function addCheckInFour(answer) {
+    roundOne.setItem('question 4', answer);
+    window.location.reload();
+}
+
+function addCheckInFive(answer) {
+    roundOne.setItem('question 5', answer);
+    window.location.reload();
 }
 
 
