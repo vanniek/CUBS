@@ -11,14 +11,19 @@ const counterOne = document.getElementById("counter");
 const counterTwo = document.getElementById("countertwo");
 const timeGauge = document.getElementById("timeGauge");
 const scoreDiv = document.getElementById("scoreContainer");
-const responseDiv = document.getElementById("responseContainer");
-const responseDivTwo = document.getElementById("responseContainerTwo");
-const responseDivThree = document.getElementById("responseContainerThree");
-const responseDivFour = document.getElementById("responseContainerFour");
-const responseDivFive = document.getElementById("responseContainerFive");
+// const responseDiv = document.getElementById("responseContainer");
+// const responseDivTwo = document.getElementById("responseContainerTwo");
+// const responseDivThree = document.getElementById("responseContainerThree");
+// const responseDivFour = document.getElementById("responseContainerFour");
+// const responseDivFive = document.getElementById("responseContainerFive");
 const instructionPage = document.getElementById("instructionPage");
 var number = 100;
+var i = 1;
 var MAX = 400;
+let roundOne = window.sessionStorage;
+if(roundOne.getItem('session number') == null) {
+roundOne.setItem('session number', 0);
+}
 // const MAX = (Math.floor(Math.random() * 4.3) + 2) * 100;
 const RAND = 1;
 // create our questions
@@ -48,7 +53,6 @@ let questions = [
 // create some variables
 
 // const lastQuestion = questions.length - 1;
-let roundOne = window.sessionStorage;
 let clicksCount = 0;
 let roundOneKey = "Session 1";
 let runningQuestion = 0;
@@ -147,37 +151,51 @@ function checkAnswer(answer){
     } else{
         // end the quiz and show the score
         // clearInterval(TIMER);
-        if(roundOne.getItem('Session 1') == null) {
-            roundOne.setItem('Session 1', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+        max_sessions = 20;
+        sessionNumber = parseInt(roundOne.getItem('session number')) + 1;
+        if(sessionNumber < max_sessions) {
+        session = 'Session ';
+        currentSession = session + sessionNumber.toString();
+        roundOne.setItem('session number', sessionNumber);
+        if(roundOne.getItem(currentSession) == null) {
+            roundOne.setItem(currentSession, JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
             MAX = 445;
             roundOne.setItem('MAX', MAX);
-            checkIn();
+            i += 1;
+            checkIn(sessionNumber);          
         }
-        else if(roundOne.getItem('Session 2') == null) {
-            roundOne.setItem('Session 2', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-            MAX = 535;
-            roundOne.setItem('MAX', MAX);
-           checkInTwo();
-        }
-        else if(roundOne.getItem('Session 3') == null) {
-            roundOne.setItem('Session 3', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-            MAX = 515;
-            roundOne.setItem('MAX', MAX);
-            checkInThree();
+    }
+        // if(roundOne.getItem('Session 1') == null) {
+        //     roundOne.setItem('Session 1', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+        //     MAX = 445;
+        //     roundOne.setItem('MAX', MAX);
+        //     checkIn();
+        // }
+        // else if(roundOne.getItem('Session 2') == null) {
+        //     roundOne.setItem('Session 2', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+        //     MAX = 535;
+        //     roundOne.setItem('MAX', MAX);
+        //    checkInTwo();
+        // }
+        // else if(roundOne.getItem('Session 3') == null) {
+        //     roundOne.setItem('Session 3', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+        //     MAX = 515;
+        //     roundOne.setItem('MAX', MAX);
+        //     checkInThree();
             
-        }
-        else if(roundOne.getItem('Session 4') == null) {
-            roundOne.setItem('Session 4', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-            MAX = 435;
-            roundOne.setItem('MAX', MAX);
-            checkInFour();
-        }
-        else if(roundOne.getItem('Session 5') == null) {
-            roundOne.setItem('Session 5', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-            MAX = 435;
-            roundOne.setItem('MAX', MAX);
-            checkInFive();
-        }
+        // }
+        // else if(roundOne.getItem('Session 4') == null) {
+        //     roundOne.setItem('Session 4', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+        //     MAX = 435;
+        //     roundOne.setItem('MAX', MAX);
+        //     checkInFour();
+        // }
+        // else if(roundOne.getItem('Session 5') == null) {
+        //     roundOne.setItem('Session 5', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+        //     MAX = 435;
+        //     roundOne.setItem('MAX', MAX);
+        //     checkInFive();
+        // }
 
         // scoreRender();
     }
@@ -189,37 +207,51 @@ function checkAnswer(answer){
       } else if (answer == "B") {
         permanentBank += tempBank;
         roundOne.setItem("carryOverScore", permanentBank);
-        if(roundOne.getItem('Session 1') == null) {
-            roundOne.setItem('Session 1', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+        max_sessions = 20;
+        sessionNumber = parseInt(roundOne.getItem('session number')) + 1;
+        if(sessionNumber < max_sessions) {
+        session = 'Session ';
+        currentSession = session + sessionNumber.toString();
+        roundOne.setItem('session number', sessionNumber);
+        if(roundOne.getItem(currentSession) == null) {
+            roundOne.setItem(currentSession, JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
             MAX = 445;
             roundOne.setItem('MAX', MAX);
-            checkIn();
+            i += 1;
+            checkIn(sessionNumber);          
         }
-        else if(roundOne.getItem('Session 2') == null) {
-            roundOne.setItem('Session 2', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-            MAX = 535;
-            roundOne.setItem('MAX', MAX);
-           checkInTwo();
-        }
-        else if(roundOne.getItem('Session 3') == null) {
-            roundOne.setItem('Session 3', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-            MAX = 515;
-            roundOne.setItem('MAX', MAX);
-            checkInThree();
-        }
-        else if(roundOne.getItem('Session 4') == null) {
-            roundOne.setItem('Session 4', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-            MAX = 435;
-            roundOne.setItem('MAX', MAX);
-            checkInFour();
-        }
+    }
+        // if(roundOne.getItem('Session 1') == null) {
+        //     roundOne.setItem('Session 1', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+        //     MAX = 445;
+        //     roundOne.setItem('MAX', MAX);
+        //     checkIn();
+        // }
+        // else if(roundOne.getItem('Session 2') == null) {
+        //     roundOne.setItem('Session 2', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+        //     MAX = 535;
+        //     roundOne.setItem('MAX', MAX);
+        //    checkInTwo();
+        // }
+        // else if(roundOne.getItem('Session 3') == null) {
+        //     roundOne.setItem('Session 3', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+        //     MAX = 515;
+        //     roundOne.setItem('MAX', MAX);
+        //     checkInThree();
+        // }
+        // else if(roundOne.getItem('Session 4') == null) {
+        //     roundOne.setItem('Session 4', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+        //     MAX = 435;
+        //     roundOne.setItem('MAX', MAX);
+        //     checkInFour();
+        // }
 
-        else if(roundOne.getItem('Session 5') == null) {
-            roundOne.setItem('Session 5', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-            MAX = 435;
-            roundOne.setItem('MAX', MAX);
-            checkInFive();
-        }
+        // else if(roundOne.getItem('Session 5') == null) {
+        //     roundOne.setItem('Session 5', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
+        //     MAX = 435;
+        //     roundOne.setItem('MAX', MAX);
+        //     checkInFive();
+        // }
         // scoreRender();
       }//else{
     //     // answer is wrong
@@ -254,25 +286,32 @@ function scoreRender(){
     scoreDiv.style.display = "block";
 }
 
-function checkIn() {
-    responseDiv.style.display = "block";
+function checkIn(sessionNumber) {
+    if(sessionNumber == 3 || sessionNumber == 11 || sessionNumber == 18 || sessionNumber == 14 || sessionNumber == 9) {
+    responseString = "responseContainer" + sessionNumber;
+    response = document.getElementById(responseString);
+    response.style.display = "block";
+} else {
+    response = document.getElementById("responseContainer1");
+    response.style.display = "block"; 
+}
 }
 
-function checkInTwo() {
-    responseDivTwo.style.display = "block";
-}
+// function checkInTwo() {
+//     responseDivTwo.style.display = "block";
+// }
 
-function checkInThree() {
-    responseDivThree.style.display = "block";
-}
+// function checkInThree() {
+//     responseDivThree.style.display = "block";
+// }
 
-function checkInFour() {
-    responseDivFour.style.display = "block";
-}
+// function checkInFour() {
+//     responseDivFour.style.display = "block";
+// }
 
-function checkInFive() {
-    responseDivFive.style.display = "block";
-}
+// function checkInFive() {
+//     responseDivFive.style.display = "block";
+// }
 
 function addCheckIn(answer) {
     roundOne.setItem('question 1', answer);
