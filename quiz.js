@@ -209,7 +209,7 @@ function checkAnswer(answer){
         roundOne.setItem("carryOverScore", permanentBank);
         max_sessions = 20;
         sessionNumber = parseInt(roundOne.getItem('session number')) + 1;
-        if(sessionNumber < max_sessions) {
+        if(sessionNumber <= max_sessions) {
         session = 'Session ';
         currentSession = session + sessionNumber.toString();
         roundOne.setItem('session number', sessionNumber);
@@ -291,7 +291,11 @@ function checkIn(sessionNumber) {
     responseString = "responseContainer" + sessionNumber;
     response = document.getElementById(responseString);
     response.style.display = "block";
-} else {
+} else if(sessionNumber == 20) {
+    response = document.getElementById("end");
+    response.style.display = "block";
+}
+else {
     response = document.getElementById("responseContainer1");
     response.style.display = "block"; 
 }

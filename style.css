@@ -246,6 +246,17 @@ h2 {
     display: none;
 }
 
+#end{
+    margin : -20px auto;
+    background-color: white;
+    height: 600px;
+    width : 700px;
+    border-radius: 5px;
+    box-shadow: 0px 5px 15px 0px;
+    position: absolute;
+    display: none;
+}
+
 #repeat {
     position: absolute;
     display: block;
