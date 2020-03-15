@@ -11,11 +11,6 @@ const counterOne = document.getElementById("counter");
 const counterTwo = document.getElementById("countertwo");
 const timeGauge = document.getElementById("timeGauge");
 const scoreDiv = document.getElementById("scoreContainer");
-// const responseDiv = document.getElementById("responseContainer");
-// const responseDivTwo = document.getElementById("responseContainerTwo");
-// const responseDivThree = document.getElementById("responseContainerThree");
-// const responseDivFour = document.getElementById("responseContainerFour");
-// const responseDivFive = document.getElementById("responseContainerFive");
 const instructionPage = document.getElementById("instructionPage");
 var number = 100;
 var i = 1;
@@ -62,86 +57,35 @@ const gaugeWidth = 150; // 150px
 const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
 let permanentBank = 0;
-let tempBank = 0;
+var tempBank = 0;
 let jsonResult = [];
-
-// // render a question
-// function renderQuestion(){
-//     let q = questions[runningQuestion];
-    
-//     question.innerHTML = "<p>"+ q.question +"</p>";
-//     // qImg.innerHTML = "<img src="+ q.imgSrc +">";
-//     choiceA.innerHTML = q.choiceA;
-//     choiceB.innerHTML = q.choiceB;
-//     // choiceC.innerHTML = q.choiceC;
-// }
 
 start.addEventListener("click",startQuiz);
 
 // start quiz
 function startQuiz(){
 
-        start.style.display = "none";
-            instructionPage.style.display = "none";
-
-
-    // renderQuestion();
-        choiceA.innerHTML = "MAKE BIGGER";
+    start.style.display = "none";
+    instructionPage.style.display = "none";
+    choiceA.innerHTML = "MAKE BIGGER";
     choiceB.innerHTML = "STOP";
     quiz.style.display = "block";
-    // renderProgress();
     renderCounter();
-    // TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
 }
 
-// render progress
-// function renderProgress(){
-//     for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
-//         progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
-//     }
-// }
-
-// counter render
-
 function renderCounter(){
-
-    	// if(count < 0) {
-    	// 	finalCount = count * -1;
-     //        counter.innerHTML = 'Temp Bank: ' + tempBank;
-     //        counterTwo.innerHTML = 'Permanent Bank: ' + permanentBank;
-    	// }
-     // else {
         if(roundOne.getItem("carryOverScore") != null) {
             permanentBank += parseInt(roundOne.getItem("carryOverScore"));
         }
             counter.innerHTML = 'Temp Bank: ' + tempBank;
             counterTwo.innerHTML = 'Permanent Bank: ' + permanentBank;
-     // }
-        // timeGauge.style.width = count * gaugeUnit + "px";
-  
-    //else{
-    //     // change progress color to red
-    //     // answerIsWrong();
-    //     count--;
-        // if(runningQuestion < lastQuestion){
-        //     runningQuestion++;
-        //     // renderQuestion();
-        // }else{
-        //     // end the quiz and show the score
-        //     clearInterval(TIMER);
-        //     scoreRender();
-        // }
-    // }
 }
-
-// checkAnwer
 
 function checkAnswer(answer){
         if(roundOne.getItem('MAX') == null) {
         roundOne.setItem('MAX', MAX);
     }
     if(answer == "A"){
-        // answer is correct=
         clicksCount++;
         number += Math.floor(Math.random() * 20) + 1;
         growCirc = Math.floor(Math.random() * 10) + 0.2;
@@ -149,8 +93,6 @@ function checkAnswer(answer){
         circle.height += growCirc;
         circle.width += growCirc;
     } else{
-        // end the quiz and show the score
-        // clearInterval(TIMER);
         max_sessions = 20;
         sessionNumber = parseInt(roundOne.getItem('session number')) + 1;
         if(sessionNumber < max_sessions) {
@@ -165,45 +107,12 @@ function checkAnswer(answer){
             checkIn(sessionNumber);          
         }
     }
-        // if(roundOne.getItem('Session 1') == null) {
-        //     roundOne.setItem('Session 1', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-        //     MAX = 445;
-        //     roundOne.setItem('MAX', MAX);
-        //     checkIn();
-        // }
-        // else if(roundOne.getItem('Session 2') == null) {
-        //     roundOne.setItem('Session 2', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-        //     MAX = 535;
-        //     roundOne.setItem('MAX', MAX);
-        //    checkInTwo();
-        // }
-        // else if(roundOne.getItem('Session 3') == null) {
-        //     roundOne.setItem('Session 3', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-        //     MAX = 515;
-        //     roundOne.setItem('MAX', MAX);
-        //     checkInThree();
-            
-        // }
-        // else if(roundOne.getItem('Session 4') == null) {
-        //     roundOne.setItem('Session 4', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-        //     MAX = 435;
-        //     roundOne.setItem('MAX', MAX);
-        //     checkInFour();
-        // }
-        // else if(roundOne.getItem('Session 5') == null) {
-        //     roundOne.setItem('Session 5', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-        //     MAX = 435;
-        //     roundOne.setItem('MAX', MAX);
-        //     checkInFive();
-        // }
 
-        // scoreRender();
     }
         tempBank++;
         counter.innerHTML = 'Temp Bank: ' + tempBank;
         count++;
-        // change progress color to green
-        // answerIsCorrect();
+
       } else if (answer == "B") {
         permanentBank += tempBank;
         roundOne.setItem("carryOverScore", permanentBank);
@@ -221,67 +130,10 @@ function checkAnswer(answer){
             checkIn(sessionNumber);          
         }
     }
-        // if(roundOne.getItem('Session 1') == null) {
-        //     roundOne.setItem('Session 1', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-        //     MAX = 445;
-        //     roundOne.setItem('MAX', MAX);
-        //     checkIn();
-        // }
-        // else if(roundOne.getItem('Session 2') == null) {
-        //     roundOne.setItem('Session 2', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-        //     MAX = 535;
-        //     roundOne.setItem('MAX', MAX);
-        //    checkInTwo();
-        // }
-        // else if(roundOne.getItem('Session 3') == null) {
-        //     roundOne.setItem('Session 3', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-        //     MAX = 515;
-        //     roundOne.setItem('MAX', MAX);
-        //     checkInThree();
-        // }
-        // else if(roundOne.getItem('Session 4') == null) {
-        //     roundOne.setItem('Session 4', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-        //     MAX = 435;
-        //     roundOne.setItem('MAX', MAX);
-        //     checkInFour();
-        // }
 
-        // else if(roundOne.getItem('Session 5') == null) {
-        //     roundOne.setItem('Session 5', JSON.stringify({"permanentBank": permanentBank, "numberOfClicks": clicksCount}));
-        //     MAX = 435;
-        //     roundOne.setItem('MAX', MAX);
-        //     checkInFive();
-        // }
-        // scoreRender();
-      }//else{
-    //     // answer is wrong
-    //     // change progress color to red
-    //     // answerIsWrong();
-    //     count--;
-    //     renderCounter();
-    // }
- 
-    // if(runningQuestion < lastQuestion){
-    //     runningQuestion++;
-    //     renderQuestion();
-    // }else{
-    //     // end the quiz and show the score
-    //     clearInterval(TIMER);
-    //     scoreRender();
-    // }
+      }
 }
 
-// // answer is correct
-// function answerIsCorrect(){
-//     document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
-// }
-
-// // answer is Wrong
-// function answerIsWrong(){
-//     document.getElementById(runningQuestion).style.backgroundColor = "#f00";
-// }
-
-// score render
 function scoreRender(){
     scoreDiv.style.display = "block";
 }
@@ -289,33 +141,21 @@ function scoreRender(){
 function checkIn(sessionNumber) {
     if(sessionNumber == 3 || sessionNumber == 11 || sessionNumber == 18 || sessionNumber == 14 || sessionNumber == 9) {
     responseString = "responseContainer" + sessionNumber;
+    scoreblurb = "scoreblurb" + sessionNumber;
     response = document.getElementById(responseString);
+    document.getElementById(scoreblurb).innerHTML = "You have reached the end of this session. Your temporary score for this session was " + tempBank + ". Your total score is " + permanentBank + " points.";
     response.style.display = "block";
 } else if(sessionNumber == 20) {
     response = document.getElementById("end");
+    document.getElementById("repeat1").innerHTML = "You have reached the end of the game. Please let your admin know by raising your hand. Your temporary score for this session was " + tempBank + ". Your total score is " + permanentBank + " points.";
     response.style.display = "block";
 }
 else {
     response = document.getElementById("responseContainer1");
+    document.getElementById("scoreblurb").innerHTML = "You have reached the end of this session. Your temporary score for this session was " + tempBank + ". Your total score is " + permanentBank + " points.";
     response.style.display = "block"; 
 }
 }
-
-// function checkInTwo() {
-//     responseDivTwo.style.display = "block";
-// }
-
-// function checkInThree() {
-//     responseDivThree.style.display = "block";
-// }
-
-// function checkInFour() {
-//     responseDivFour.style.display = "block";
-// }
-
-// function checkInFive() {
-//     responseDivFive.style.display = "block";
-// }
 
 function addCheckIn(answer) {
     roundOne.setItem('question 1', answer);
